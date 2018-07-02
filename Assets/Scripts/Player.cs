@@ -6,32 +6,63 @@ public class Player : MonoBehaviour {
 
     [SerializeField] float speed = 7f;
     [SerializeField] float jumpSpeed = 7.5f;
-    [SerializeField] float controlSpeed = 2 / 3f;
+    [SerializeField] float controlXSpeedJump = 2 / 3f;
+
+    [SerializeField] Cinemachine.CinemachineVirtualCamera cameraDown;
+    //[SerializeField] Cinemachine.CinemachineVirtualCamera vcam;
 
     bool isAlive;
 
     Rigidbody2D rigidBody;
-    Collider2D collider2D;
+    Collider2D playerCollider2D;
     Animator animator;
 
 
-	// Use this for initialization
+	// Use this for iniltialization
 	void Start () {
         rigidBody = GetComponent<Rigidbody2D>();
-        collider2D = GetComponent<Collider2D>();
+        playerCollider2D = GetComponent<Collider2D>();
         animator = GetComponent<Animator>();
+
+        controlXSpeedJump *= speed; 
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        TouchingPlug();
+
+    // Update is called once per frame
+    void Update() {
+        IsTouchingPlug();
         Move();
         Jump();
         FlipSpriteX();
+
+        if (Input.GetKey(KeyCode.DownArrow) && playerCollider2D.IsTouchingLayers(LayerMask.GetMask("Suspended Platform"))) {
+            playerCollider2D.isTrigger = true;
+        }
+    }
+
+
+	private void LateUpdate() {
+        cameraDown.enabled = false;
+        //cameraDown.transform.position = new Vector3(vcam.transform.position.x, cameraDown.transform.position.y, cameraDown.transform.position.z);
+
+        if (Input.GetKey(KeyCode.DownArrow) && playerCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground"))) {
+            cameraDown.enabled = true;
+        }
+    }
+
+
+	private void OnTriggerExit2D(Collider2D collision) {
+        playerCollider2D.isTrigger = false;
 	}
 
-    private void TouchingPlug() {
-        if (!collider2D.IsTouchingLayers(LayerMask.GetMask("Plug"))) return;
+    /*private void OnTriggerStay2D(Collider2D collision) {
+        if (collision.gameObject.tag == "Plug" && Input.GetKeyDown(KeyCode.UpArrow)) {
+            SwitchDimension();
+        }
+        print(collision.gameObject.tag);
+    }*/
+
+	private void IsTouchingPlug() {
+        if (!playerCollider2D.IsTouchingLayers(LayerMask.GetMask("Plug"))) return;
 
         if(Input.GetKeyDown(KeyCode.UpArrow)) {
             SwitchDimension();
@@ -39,27 +70,23 @@ public class Player : MonoBehaviour {
     }
 
 	private void Move() {
-        Vector2 playerSpeed;
         bool isWalking = false;
-        playerSpeed = rigidBody.velocity;
+        Vector2 playerSpeed = rigidBody.velocity;
 
         bool isJumping = Mathf.Abs(rigidBody.velocity.y) > 0.0;
 
-        if(Input.GetKey(KeyCode.RightArrow)) {
-            if (isJumping) playerSpeed.x = speed * controlSpeed;
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            if (isJumping) playerSpeed.x = controlXSpeedJump;
             else playerSpeed.x = speed;
             isWalking = true;
         }
 
-        else if(Input.GetKey(KeyCode.LeftArrow)) {
-            if (isJumping) playerSpeed.x = -speed * controlSpeed;
+        else if (Input.GetKey(KeyCode.LeftArrow)) {
+            if (isJumping) playerSpeed.x = -controlXSpeedJump;
             else playerSpeed.x = -speed;
             isWalking = true;
         }
-
-        /*else if(Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow)){
-            playerSpeed.x = Mathf.Sign(rigidBody.velocity.x) * speed / 3;
-        }*/
 
         rigidBody.velocity = playerSpeed;
 
@@ -68,7 +95,8 @@ public class Player : MonoBehaviour {
 
 
     private void Jump() {
-        if (!collider2D.IsTouchingLayers(LayerMask.GetMask("Ground")) || rigidBody.velocity.y != 0.0f) return;
+        if (!playerCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground", "Floor Platform", "Suspended Platform")) 
+            || rigidBody.velocity.y != 0.0f) return;
 
         if(Input.GetKeyDown(KeyCode.Space)) {
             Vector2 jumpSpeedToAdd = new Vector2(0f, jumpSpeed);
@@ -93,6 +121,7 @@ public class Player : MonoBehaviour {
         transform.position = new Vector3(transform.position.x, -transform.position.y, transform.position.z);
         rigidBody.gravityScale *= -1;
         jumpSpeed *= -1;
+
         FlipSpriteY();
     }
 

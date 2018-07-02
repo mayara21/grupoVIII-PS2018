@@ -18,8 +18,8 @@ TagManager:
   - Wall
   - Ground
   - Plug
-  - 
-  - 
+  - Suspended Platform
+  - Floor Platform
   - 
   - 
   - 
@@ -47,6 +47,9 @@ TagManager:
     locked: 0
   - name: Interactive
     uniqueID: 241809967
+    locked: 0
+  - name: Suspended Platform
+    uniqueID: 184222171
     locked: 0
   - name: Player
     uniqueID: 790974521

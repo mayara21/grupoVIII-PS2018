@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Plug
+  - Wall
+  - Enemy
+  - My Player
+  - Energy Ball
+  - Suction Area
   layers:
   - Default
   - TransparentFX
@@ -20,10 +25,10 @@ TagManager:
   - Plug
   - Suspended Platform
   - Floor Platform
-  - 
-  - 
-  - 
-  - 
+  - Energy Ball
+  - Suction Area
+  - Enemy
+  - Player
   - 
   - 
   - 
@@ -48,8 +53,17 @@ TagManager:
   - name: Interactive
     uniqueID: 241809967
     locked: 0
+  - name: Energy Ball
+    uniqueID: 2438027185
+    locked: 0
   - name: Suspended Platform
     uniqueID: 184222171
+    locked: 0
+  - name: Floor Platform
+    uniqueID: 1105883621
+    locked: 0
+  - name: Enemy
+    uniqueID: 1839355907
     locked: 0
   - name: Player
     uniqueID: 790974521

@@ -12,30 +12,42 @@ public class Player : MonoBehaviour {
     [SerializeField] float knockBackThrustX = 30f;
     [SerializeField] float knockBackThrustY = 100f;
     [SerializeField] float slowMoveSpeed = 3f;
+    [SerializeField] float damage = 2f;
+    [SerializeField] int amountOfShots = 3;
+    [SerializeField] int lives = 3;
 
     [SerializeField] GameObject energyBallPrefab;
     [SerializeField] Transform energyBallSpawn;
     [SerializeField] GameObject suctionArea;
+    //[SerializeField] Collider2D feetCollider;
 
     [SerializeField] Cinemachine.CinemachineVirtualCamera cameraDown;
     //[SerializeField] Cinemachine.CinemachineVirtualCamera vcam;
 
-    int lives = 20;
     bool isAlive = true;
     bool canTakeDamage = true;
     bool canMove = true;
     bool isSucking = false;
 
+    public static int maxAmountOfShots;
+    public static int maxLives;
+
     Rigidbody2D rigidBody;
     Collider2D playerCollider2D;
     Animator animator;
-
+    Collider2D feetCollider;
+    Collider2D[] colliders;
 
 	// Use this for iniltialization
 	void Start () {
+        colliders = GetComponents<Collider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
-        playerCollider2D = GetComponent<Collider2D>();
+        playerCollider2D = colliders[0];
+        feetCollider = colliders[1];
         animator = GetComponent<Animator>();
+
+        maxAmountOfShots = amountOfShots;
+        maxLives = lives;
   	}
 
     // Update is called once per frame
@@ -43,6 +55,7 @@ public class Player : MonoBehaviour {
         if(!isSucking) {
             FlipSpriteX();
         }
+
     }
 
 	private void FixedUpdate() {
@@ -60,12 +73,13 @@ public class Player : MonoBehaviour {
             Jump();
         }
 
-        if (Input.GetKey(KeyCode.DownArrow) && playerCollider2D.IsTouchingLayers(LayerMask.GetMask("Suspended Platform")))
+        if (Input.GetKey(KeyCode.DownArrow) && feetCollider.IsTouchingLayers(LayerMask.GetMask("Suspended Platform", "Moving Platform")))
         {
+            //feetCollider.isTrigger = true;
             playerCollider2D.isTrigger = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z) && amountOfShots > 0)
         {
             Fire();
         }
@@ -99,19 +113,17 @@ public class Player : MonoBehaviour {
 
 
 	private void OnTriggerExit2D(Collider2D collision) {
-        playerCollider2D.isTrigger = false;
-	}
+        if (collision.gameObject.CompareTag("Suspended Platform") && !collision.IsTouching(playerCollider2D)) {
+            playerCollider2D.isTrigger = false;
+        }
+ 	}
 
-	private void OnTriggerStay2D(Collider2D collision)
-	{
-        //print(collision.gameObject.tag);
-	}
 
 	private IEnumerator TakeDamage()
     {
         lives -= temporaryDamage;
         if(lives <= 0) {
-            Destroy(gameObject);
+            Die();
         }
         canTakeDamage = false;
         //animator.SetBool("Immune", !canTakeDamage);
@@ -170,7 +182,7 @@ public class Player : MonoBehaviour {
     private void Fire() {
         var energyBall = (GameObject)Instantiate(energyBallPrefab, energyBallSpawn.position, energyBallSpawn.rotation);
         energyBall.GetComponent<Rigidbody2D>().velocity = new Vector2(transform.localScale.x * energyBallSpeed, 0f);
-
+        amountOfShots--;
         Destroy(energyBall, 3.0f);
     }
 
@@ -200,10 +212,11 @@ public class Player : MonoBehaviour {
 
 
     private void Jump() {
-        if (!playerCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground", "Floor Platform", "Suspended Platform")) 
-            || rigidBody.velocity.y != 0f) return;
+        if (!feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground", "Floor Platform", "Suspended Platform"))) {
+            return;
+        }
 
-        if(Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Space)) {
             Vector2 jumpSpeedToAdd = new Vector2(0f, jumpSpeed);
             rigidBody.velocity += jumpSpeedToAdd;
         }
@@ -229,5 +242,37 @@ public class Player : MonoBehaviour {
 
         FlipSpriteY();
     }
+
+    public float Damage {
+        get { return damage; }
+    }
+
+    public int Lives {
+        get { return lives; }
+    }
+
+    public int AmountOfShots {
+        get { return amountOfShots; }
+    }
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+        if(collision.gameObject.CompareTag("Coffee")) {
+            if (lives < maxLives) lives++;
+        }
+
+        if(collision.gameObject.CompareTag("Batteries")) {
+            if (amountOfShots < maxAmountOfShots) amountOfShots++;
+        }
+
+	}
+
+    private void Die() {
+        print("Morreu!");
+        //animator.SetBool(Dying, !isAlive);
+        Destroy(gameObject);
+        //tela de game over
+    }
+
 
 }

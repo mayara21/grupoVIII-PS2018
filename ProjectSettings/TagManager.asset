@@ -10,6 +10,9 @@ TagManager:
   - My Player
   - Energy Ball
   - Suction Area
+  - Coffee
+  - Batteries
+  - Suspended Platform
   layers:
   - Default
   - TransparentFX
@@ -30,7 +33,7 @@ TagManager:
   - Enemy
   - Player
   - 
-  - 
+  - Interactive
   - 
   - 
   - 

@@ -767,7 +767,7 @@ Transform:
   - {fileID: 1034393418}
   - {fileID: 969046448}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &447065326
 GameObject:
@@ -1274,15 +1274,15 @@ Prefab:
     - target: {fileID: 20754623267336284, guid: 458c476824d34c649b5bc314e94e1ece,
         type: 2}
       propertyPath: orthographic size
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4018018310002110, guid: 458c476824d34c649b5bc314e94e1ece, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5.1109095
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4018018310002110, guid: 458c476824d34c649b5bc314e94e1ece, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.1245928
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114935154849355290, guid: 458c476824d34c649b5bc314e94e1ece,
         type: 2}
@@ -1312,7 +1312,7 @@ Prefab:
       objectReference: {fileID: 1827140634}
     - target: {fileID: 4018018310002110, guid: 458c476824d34c649b5bc314e94e1ece, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114531307443064912, guid: 458c476824d34c649b5bc314e94e1ece, type: 2}
@@ -1962,7 +1962,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4159674076530428, guid: 16bec6c27b31a4573aff3d9df7b1a819, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 114019947434646902, guid: 16bec6c27b31a4573aff3d9df7b1a819,
         type: 2}
@@ -2417,7 +2417,7 @@ Transform:
   - {fileID: 210555082}
   - {fileID: 2029657099}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1144807374
 GameObject:
@@ -3829,7 +3829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
-  jumpSpeed: 7.5
+  jumpSpeed: 6
   controlXSpeedJump: 0.6666667
   energyBallSpeed: 8
   temporaryDamage: 1

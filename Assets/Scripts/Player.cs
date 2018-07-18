@@ -13,8 +13,10 @@ public class Player : MonoBehaviour {
     [SerializeField] float knockBackThrustY = 100f;
     [SerializeField] float slowMoveSpeed = 3f;
     [SerializeField] float damage = 2f;
-    [SerializeField] int amountOfShots = 3;
+    [SerializeField] int amountOfShots = 0;
+    [SerializeField] int maxShots = 3;
     [SerializeField] int lives = 3;
+    [SerializeField] int batteryScore = 20;
 
     [SerializeField] GameObject energyBallPrefab;
     [SerializeField] Transform energyBallSpawn;
@@ -26,11 +28,11 @@ public class Player : MonoBehaviour {
 
     bool isAlive = true;
     bool canTakeDamage = true;
-    bool canMove = true;
     bool isSucking = false;
 
     public static int maxAmountOfShots;
     public static int maxLives;
+    public bool canMove = true;
 
     Rigidbody2D rigidBody;
     Collider2D playerCollider2D;
@@ -46,7 +48,7 @@ public class Player : MonoBehaviour {
         feetCollider = colliders[1];
         animator = GetComponent<Animator>();
 
-        maxAmountOfShots = amountOfShots;
+        maxAmountOfShots = maxShots;
         maxLives = lives;
   	}
 
@@ -60,6 +62,8 @@ public class Player : MonoBehaviour {
 
 	private void FixedUpdate() {
         IsTouchingPlug();
+
+        if (!canMove) return;
 
         if(canMove && !isSucking) {
             Move();
@@ -122,6 +126,7 @@ public class Player : MonoBehaviour {
 	private IEnumerator TakeDamage()
     {
         lives -= temporaryDamage;
+        FindObjectOfType<GameSession>().ProcessPlayerDamage(temporaryDamage); // Checar melhor isso
         if(lives <= 0) {
             Die();
         }
@@ -183,6 +188,7 @@ public class Player : MonoBehaviour {
         var energyBall = (GameObject)Instantiate(energyBallPrefab, energyBallSpawn.position, energyBallSpawn.rotation);
         energyBall.GetComponent<Rigidbody2D>().velocity = new Vector2(transform.localScale.x * energyBallSpeed, 0f);
         amountOfShots--;
+        FindObjectOfType<GameSession>().ProcessUseShot();
         Destroy(energyBall, 3.0f);
     }
 
@@ -258,11 +264,28 @@ public class Player : MonoBehaviour {
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
         if(collision.gameObject.CompareTag("Coffee")) {
-            if (lives < maxLives) lives++;
+            if (lives < maxLives) {
+                lives++;
+                FindObjectOfType<GameSession>().ProcessGetLife();
+            }
         }
 
         if(collision.gameObject.CompareTag("Batteries")) {
-            if (amountOfShots < maxAmountOfShots) amountOfShots++;
+            if (amountOfShots < maxAmountOfShots) {
+                amountOfShots++;
+                FindObjectOfType<GameSession>().ProcessGetMoreShots();
+            }
+            else {
+                FindObjectOfType<GameSession>().ProcessScoreIncrease(batteryScore);
+            }
+        }
+
+        if(collision.gameObject.CompareTag("Tape")) {
+            FindObjectOfType<GameSession>().ProcessTapeCaught();
+        }
+
+        if(collision.gameObject.CompareTag("Flip Flop")) {
+            FindObjectOfType<GameSession>().ProcessFlipFlipCaught();
         }
 
 	}

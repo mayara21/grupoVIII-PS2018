@@ -14,6 +14,8 @@ TagManager:
   - Batteries
   - Suspended Platform
   - Blockade
+  - Tape
+  - Flip Flop
   layers:
   - Default
   - TransparentFX
@@ -77,4 +79,7 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 3766196979
+    locked: 0
+  - name: Dialog Box
+    uniqueID: 1381511701
     locked: 0

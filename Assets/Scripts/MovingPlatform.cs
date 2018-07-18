@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovingPlatform : MonoBehaviour
 {
 
-    [SerializeField] float speed = 1f;
+    public float speed = 1f;
     [SerializeField] float minimalYPos = 2.3f;
     [SerializeField] float maximalYPos = 4.5f;
 

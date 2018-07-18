@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1021868563677122}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.75, y: 1.12, z: 0}
+  m_LocalPosition: {x: 17.83, y: -1.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -99,17 +99,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47f8b5ae5d8fc8c42be167453f4296d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyBallPrefab: {fileID: 1770869051996118, guid: bff2c136c8d710a40aa28807faec9553,
-    type: 2}
   player: {fileID: 0}
-  energyBallSpeed: 1
+  session: {fileID: 0}
   damage: 1
   speed: 2
   postAttackDelay: 2
   paralizedTime: 3
   lives: 20
   postDamageImmuneTime: 1
-  minimalXPos: 12
+  damageValue: 10
+  minimalXPos: 14
   maximalXPos: 20
 --- !u!212 &212085296847768422
 SpriteRenderer:

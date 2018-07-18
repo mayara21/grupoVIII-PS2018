@@ -7,6 +7,7 @@ public class SampleEnemy : MonoBehaviour {
     //[SerializeField] GameObject energyBallPrefab;
     //[SerializeField] Transform energyBallSpawn;
     [SerializeField] Player player;
+    //[SerializeField] GameSession session;
 
     //[SerializeField] float energyBallSpeed = 1f;
     [SerializeField] float damage = 1;
@@ -15,6 +16,7 @@ public class SampleEnemy : MonoBehaviour {
     [SerializeField] float paralizedTime = 3f;
     [SerializeField] float lives = 10f;
     [SerializeField] float postDamageImmuneTime = 1f;
+    [SerializeField] int damageValue = 10;
 
     [SerializeField] float minimalXPos = 12f;
     [SerializeField] float maximalXPos = 20f;
@@ -116,6 +118,7 @@ public class SampleEnemy : MonoBehaviour {
 	private IEnumerator SuckEnergy(float takenDamage) {
         print("levando dano");
         lives -= takenDamage;
+        FindObjectOfType<GameSession>().ProcessScoreIncrease(damageValue);
         canTakeDamage = false;
       
         yield return new WaitForSeconds(postDamageImmuneTime);

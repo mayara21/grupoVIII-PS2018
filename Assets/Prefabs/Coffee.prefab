@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4012612658020882}
   - component: {fileID: 212235569008989306}
   - component: {fileID: 61609797460380272}
-  - component: {fileID: 114752741412637884}
   m_Layer: 19
   m_Name: Coffee
   m_TagString: Coffee
@@ -67,17 +66,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.2028627, y: 1.9069195}
   m_EdgeRadius: 0
---- !u!114 &114752741412637884
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1353464722198678}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a6a51f51263245579e424ce087c51e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &212235569008989306
 SpriteRenderer:
   m_ObjectHideFlags: 1

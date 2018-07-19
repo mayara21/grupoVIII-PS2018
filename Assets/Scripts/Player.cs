@@ -42,6 +42,7 @@ public class Player : MonoBehaviour {
 
 	// Use this for iniltialization
 	void Start () {
+        //print(lives);
         colliders = GetComponents<Collider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
         playerCollider2D = colliders[0];
@@ -50,6 +51,9 @@ public class Player : MonoBehaviour {
 
         maxAmountOfShots = maxShots;
         maxLives = lives;
+        lives = FindObjectOfType<GameSession>().playerLives;
+        amountOfShots = FindObjectOfType<GameSession>().amountOfShots;
+        print(lives);
   	}
 
     // Update is called once per frame
@@ -265,7 +269,9 @@ public class Player : MonoBehaviour {
 	{
         if(collision.gameObject.CompareTag("Coffee")) {
             if (lives < maxLives) {
+                print("Entrei aqui");
                 lives++;
+                Destroy(collision.gameObject);
                 FindObjectOfType<GameSession>().ProcessGetLife();
             }
         }
@@ -278,14 +284,17 @@ public class Player : MonoBehaviour {
             else {
                 FindObjectOfType<GameSession>().ProcessScoreIncrease(batteryScore);
             }
+            Destroy(collision.gameObject);
         }
 
         if(collision.gameObject.CompareTag("Tape")) {
             FindObjectOfType<GameSession>().ProcessTapeCaught();
+            Destroy(collision.gameObject);
         }
 
         if(collision.gameObject.CompareTag("Flip Flop")) {
             FindObjectOfType<GameSession>().ProcessFlipFlipCaught();
+            Destroy(collision.gameObject);
         }
 
 	}
@@ -293,7 +302,8 @@ public class Player : MonoBehaviour {
     private void Die() {
         print("Morreu!");
         //animator.SetBool(Dying, !isAlive);
-        Destroy(gameObject);
+        FindObjectOfType<GameSession>().LoadOnDeath();
+        //Destroy(gameObject);
         //tela de game over
     }
 

@@ -10,15 +10,8 @@ public class ActivateText : MonoBehaviour {
     [SerializeField] int startLine;
     [SerializeField] int endLine;
     [SerializeField] bool destroyAfterAppearing;
+    //[SerializeField] bool stopPlayer;
 
-	// Use this for initialization
-	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     void RestartTextBox(Collider2D collision) {
 
@@ -31,7 +24,9 @@ public class ActivateText : MonoBehaviour {
             textBox.EnableTextBox();
         }
 
-        if (destroyAfterAppearing) Destroy(gameObject);
+        if (destroyAfterAppearing) {
+            Destroy(gameObject);
+        }
     }
 
 	private void OnTriggerStay2D(Collider2D collision)

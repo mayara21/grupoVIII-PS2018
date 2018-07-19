@@ -11,6 +11,7 @@ public class Coffee : MonoBehaviour {
             if()
         }*/
         if(collision.gameObject.GetComponent<Player>().Lives < Player.maxLives) {
+            print("Destruir!");
             Destroy(gameObject);   
         }
 	}

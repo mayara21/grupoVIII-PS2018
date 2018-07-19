@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4829214582501354}
   - component: {fileID: 212308736052960770}
   - component: {fileID: 61936743571871242}
-  - component: {fileID: 114600126138131770}
   m_Layer: 19
   m_Name: Batteries
   m_TagString: Batteries
@@ -67,17 +66,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2260396, y: 2.6468601}
   m_EdgeRadius: 0
---- !u!114 &114600126138131770
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1955803508448166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 191fecf14b27741c193e48b8017a9f75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &212308736052960770
 SpriteRenderer:
   m_ObjectHideFlags: 1

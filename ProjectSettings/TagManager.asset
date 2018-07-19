@@ -16,6 +16,7 @@ TagManager:
   - Blockade
   - Tape
   - Flip Flop
+  - Checkpoint
   layers:
   - Default
   - TransparentFX

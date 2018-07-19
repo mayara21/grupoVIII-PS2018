@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4573110035767914}
   - component: {fileID: 212649296437441772}
   - component: {fileID: 61143090157800812}
-  - component: {fileID: 114647504252215236}
   m_Layer: 19
   m_Name: Flip Flop
   m_TagString: Flip Flop
@@ -67,17 +66,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.4, y: 2.64}
   m_EdgeRadius: 0
---- !u!114 &114647504252215236
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1085840217515684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 191fecf14b27741c193e48b8017a9f75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &212649296437441772
 SpriteRenderer:
   m_ObjectHideFlags: 1

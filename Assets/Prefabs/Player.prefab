@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4736033543358782}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Energy Ball Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,29 +39,30 @@ GameObject:
   - component: {fileID: 114029223070971448}
   - component: {fileID: 95281940005684380}
   - component: {fileID: 61251735227283730}
-  m_Layer: 0
+  - component: {fileID: 61060886553081022}
+  m_Layer: 17
   m_Name: Player
   m_TagString: My Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1491809460879896
+--- !u!1 &1596822015548746
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4269520698402976}
-  - component: {fileID: 61521005775658238}
-  m_Layer: 0
+  - component: {fileID: 4051522909536166}
+  - component: {fileID: 61748652879257976}
+  m_Layer: 17
   m_Name: Feet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1910194811660348
 GameObject:
   m_ObjectHideFlags: 0
@@ -71,9 +72,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4174366811489244}
   - component: {fileID: 61311373769550882}
-  m_Layer: 0
+  - component: {fileID: 50317530030377728}
+  m_Layer: 15
   m_Name: Suction Area
-  m_TagString: Untagged
+  m_TagString: Suction Area
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,14 +87,27 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1156199075692614}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.12, y: 1.49, z: 0}
+  m_LocalPosition: {x: -15.75, y: 1.53, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4736033543358782}
   - {fileID: 4174366811489244}
-  - {fileID: 4269520698402976}
+  - {fileID: 4051522909536166}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4051522909536166
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1596822015548746}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.319, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4033428891342234}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4174366811489244
 Transform:
@@ -107,19 +122,6 @@ Transform:
   m_Father: {fileID: 4033428891342234}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4269520698402976
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1491809460879896}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4033428891342234}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4736033543358782
 Transform:
   m_ObjectHideFlags: 1
@@ -133,6 +135,26 @@ Transform:
   m_Father: {fileID: 4033428891342234}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50317530030377728
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1910194811660348}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!50 &50763071364478906
 Rigidbody2D:
   serializedVersion: 4
@@ -153,6 +175,31 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!61 &61060886553081022
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1156199075692614}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.07494998, y: -0.7794428}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.2, y: 1.6}
+    newSize: {x: 1.2, y: 1.6}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.35148096, y: 0.041142702}
+  m_EdgeRadius: 0
 --- !u!61 &61251735227283730
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -187,10 +234,10 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.67738247, y: 0}
+  m_Offset: {x: 0.26431417, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -201,21 +248,21 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.354765, y: 1}
+  m_Size: {x: 1.5286283, y: 1}
   m_EdgeRadius: 0
---- !u!61 &61521005775658238
+--- !u!61 &61748652879257976
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1491809460879896}
+  m_GameObject: {fileID: 1596822015548746}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.021137238, y: -0.7477212}
+  m_Offset: {x: 0.07691312, y: -0.45320034}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -226,7 +273,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.46100616, y: 0.10696173}
+  m_Size: {x: 0.35652876, y: 0.056336403}
   m_EdgeRadius: 0
 --- !u!95 &95281940005684380
 Animator:
@@ -258,16 +305,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
-  jumpSpeed: 7.5
+  jumpSpeed: 6
   controlXSpeedJump: 0.6666667
   energyBallSpeed: 8
   temporaryDamage: 1
+  knockBackThrustX: 60
+  knockBackThrustY: 100
+  slowMoveSpeed: 3
+  damage: 2
+  amountOfShots: 0
+  maxShots: 3
+  lives: 3
+  batteryScore: 20
   energyBallPrefab: {fileID: 1770869051996118, guid: bff2c136c8d710a40aa28807faec9553,
     type: 2}
   energyBallSpawn: {fileID: 4736033543358782}
   suctionArea: {fileID: 1910194811660348}
-  feetCollider: {fileID: 61521005775658238}
   cameraDown: {fileID: 0}
+  canMove: 1
 --- !u!212 &212520888889968032
 SpriteRenderer:
   m_ObjectHideFlags: 1

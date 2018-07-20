@@ -46,14 +46,11 @@ public class MachineController : MonoBehaviour {
 
             if(powerBox.isActivated && FindObjectOfType<GameSession>().gotFlipFlop) {
                 AudioSource.PlayClipAtPoint(machineActivating, Camera.main.transform.position);
-                ActivateMachine();
+                FindObjectOfType<GameSession>().ProcessSuccessGame(whiteMask, vcam);
             }
         }
     }
 
-    private void ActivateMachine() {
-        FindObjectOfType<GameSession>().ProcessSuccessGame(whiteMask, vcam);
-    }
 
 
     private void RestartTextBox() {

@@ -119,7 +119,8 @@ public class GameSession : MonoBehaviour {
     }
 
     public void ProcessSuccessGame(GameObject whiteMask, Cinemachine.CinemachineVirtualCamera vcam) {
-        player.canMove = false;
+        print("Entrei aqui");
+        FindObjectOfType<Player>().canMove = false;
         StartCoroutine(ActivateMask(whiteMask));
         StartCoroutine(WaitForEffect(whiteMask, vcam));
         StartCoroutine(FinalCutscene());

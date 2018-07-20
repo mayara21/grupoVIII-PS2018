@@ -21,8 +21,6 @@ GameObject:
   - component: {fileID: 4257606045584160}
   - component: {fileID: 212852230883910450}
   - component: {fileID: 60074094102348820}
-  - component: {fileID: 114362218609663814}
-  - component: {fileID: 61396417202969628}
   m_Layer: 9
   m_Name: Return Level
   m_TagString: Wall
@@ -71,43 +69,6 @@ PolygonCollider2D:
       - {x: -1.8279392, y: 0.50000006}
       - {x: -0.41581753, y: 0.50000006}
       - {x: -0.46160737, y: -0.5056257}
---- !u!61 &61396417202969628
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1271854537166646}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.32763624, y: 0.02672711}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.7815738, y: 0.22632188}
-  m_EdgeRadius: 0
---- !u!114 &114362218609663814
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1271854537166646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd92f7683d0df4499977f3207206bd25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelLoadDelay: 1.2
 --- !u!212 &212852230883910450
 SpriteRenderer:
   m_ObjectHideFlags: 1

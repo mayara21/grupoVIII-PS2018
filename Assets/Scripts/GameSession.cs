@@ -103,7 +103,7 @@ public class GameSession : MonoBehaviour {
     public void ProcessScoreIncrease(int value, Collider2D collision) {
         score += value;
         scoreText.text = score.ToString();
-        if(collision.gameObject.CompareTag("Batteries")) AudioSource.PlayClipAtPoint(itemSFX, Camera.main.transform.position);
+        if(collision != null && collision.gameObject.CompareTag("Batteries")) AudioSource.PlayClipAtPoint(itemSFX, Camera.main.transform.position);
     }
 
     public void ProcessTapeCaught() {

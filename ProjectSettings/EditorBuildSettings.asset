@@ -15,15 +15,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Room 1.unity
     guid: c665442e1db3f13418fcb54434f65383
   - enabled: 1
-    path: Assets/Scenes/Sample Hallway.unity
+    path: Assets/Scenes/Hallway 1.unity
     guid: 96bc63188142f4ab7a70efb38914afc9
   - enabled: 1
     path: Assets/Scenes/Room 2.unity
     guid: 94f6c7843e3958a41a4d7ea2811024bc
   - enabled: 1
-    path: Assets/Scenes/Sample Hallway 1.unity
+    path: Assets/Scenes/Hallway 2.unity
     guid: d1c87784145b6438a8306a1d98fd6f4e
   - enabled: 1
+    path: Assets/Scenes/Room 3.unity
+    guid: df4a49d5334c2cf44a22e9140893daa2
+  - enabled: 0
     path: Assets/Scenes/Sample Final Scene.unity
     guid: a0ff2f60d3a0f418b97102dbfb342447
   m_configObjects: {}

@@ -17,6 +17,7 @@ TagManager:
   - Tape
   - Flip Flop
   - Checkpoint
+  - Dark Mask
   layers:
   - Default
   - TransparentFX

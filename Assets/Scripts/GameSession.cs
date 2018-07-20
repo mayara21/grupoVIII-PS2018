@@ -19,6 +19,8 @@ public class GameSession : MonoBehaviour {
     [SerializeField] Sprite[] lifeSprite;
     [SerializeField] Sprite[] shotSprite;
 
+    [SerializeField] AudioClip itemSFX;
+
     [SerializeField] int initialShots = 0;
     [SerializeField] int score = 0;
 
@@ -76,6 +78,7 @@ public class GameSession : MonoBehaviour {
     public void ProcessGetLife() {
         playerLives += 1;
         lifeDisplay.sprite = lifeSprite[playerLives];
+        AudioSource.PlayClipAtPoint(itemSFX, Camera.main.transform.position);
     }
 
     public void ProcessUseShot() {
@@ -88,6 +91,7 @@ public class GameSession : MonoBehaviour {
         amountOfShots += 1;
         //print(amountOfShots);
         shotsDisplay.sprite = shotSprite[amountOfShots];
+        AudioSource.PlayClipAtPoint(itemSFX, Camera.main.transform.position);
     }
 
     private void TakeLife(int damage) {
@@ -96,19 +100,22 @@ public class GameSession : MonoBehaviour {
         lifeDisplay.sprite = lifeSprite[playerLives];
     }
 
-    public void ProcessScoreIncrease(int value) {
+    public void ProcessScoreIncrease(int value, Collider2D collision) {
         score += value;
         scoreText.text = score.ToString();
+        if(collision.gameObject.CompareTag("Batteries")) AudioSource.PlayClipAtPoint(itemSFX, Camera.main.transform.position);
     }
 
     public void ProcessTapeCaught() {
         tapeDisplay.sprite = tapeCaught;
         gotTape = true;
+        AudioSource.PlayClipAtPoint(itemSFX, Camera.main.transform.position);
     }
 
     public void ProcessFlipFlipCaught() {
         flipFlipDisplay.sprite = flipFlopCaught;
         gotFlipFlop = true;
+        AudioSource.PlayClipAtPoint(itemSFX, Camera.main.transform.position);
     }
 
     public void ProcessSuccessGame(GameObject whiteMask, Cinemachine.CinemachineVirtualCamera vcam) {

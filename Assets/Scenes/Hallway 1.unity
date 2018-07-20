@@ -520,7 +520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
-  jumpSpeed: 7.5
+  jumpSpeed: -6
   controlXSpeedJump: 0.6666667
   energyBallSpeed: 8
   temporaryDamage: 1
@@ -536,6 +536,10 @@ MonoBehaviour:
     type: 2}
   energyBallSpawn: {fileID: 1178397818}
   suctionArea: {fileID: 1933735756}
+  tookDamageSFX: {fileID: 0}
+  plugSFX: {fileID: 0}
+  shootingSFX: {fileID: 0}
+  jumpSFX: {fileID: 0}
   cameraDown: {fileID: 1097007558}
   canMove: 1
 --- !u!50 &405965129
@@ -553,7 +557,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: -1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -901,7 +905,8 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 2.7810001
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114845344288927690, guid: 837ddc52952074c969e43609e0d26328, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 837ddc52952074c969e43609e0d26328, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &783352917 stripped
@@ -923,6 +928,7 @@ MonoBehaviour:
   otherCheckPoint: {fileID: 2065178675}
   thisActivated: {fileID: 21300000, guid: 9dd35cc1212ae427c91a6fe85e98d93b, type: 3}
   otherActivated: {fileID: 21300000, guid: 2a5c7c75c0375014ea00e79bb0d71f98, type: 3}
+  checkpointSFX: {fileID: 8300000, guid: 97e1c477f32ab46a4ae7861de868ea75, type: 3}
   isActivated: 0
 --- !u!1 &784081576
 GameObject:
@@ -1671,8 +1677,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 405965125}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 92.8, y: 1.39, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 86.45, y: -1.66, z: 0}
+  m_LocalScale: {x: 1, y: -1, z: 1}
   m_Children:
   - {fileID: 1178397818}
   - {fileID: 1933735757}
@@ -2504,19 +2510,19 @@ Prefab:
       objectReference: {fileID: 1347024402}
     - target: {fileID: 4476860227938528, guid: d4cedc8b738e2447b97c3db4034812c5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -9.931992
+      value: -16.281998
       objectReference: {fileID: 0}
     - target: {fileID: 4476860227938528, guid: d4cedc8b738e2447b97c3db4034812c5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.9499999
+      value: -2.1
       objectReference: {fileID: 0}
     - target: {fileID: 4066164964885506, guid: d4cedc8b738e2447b97c3db4034812c5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -8.131599
+      value: -8.245621
       objectReference: {fileID: 0}
     - target: {fileID: 4066164964885506, guid: d4cedc8b738e2447b97c3db4034812c5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.9528171
+      value: -2.0874233
       objectReference: {fileID: 0}
     - target: {fileID: 20417718670446412, guid: d4cedc8b738e2447b97c3db4034812c5,
         type: 2}
@@ -2647,7 +2653,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114818964927527738, guid: ef60a6a3c908b46c9a259e4d97ccfd09, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: ef60a6a3c908b46c9a259e4d97ccfd09, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &2065178674 stripped
@@ -2669,6 +2676,7 @@ MonoBehaviour:
   otherCheckPoint: {fileID: 783352918}
   thisActivated: {fileID: 21300000, guid: 1e8a8ff8f709647d9a078a9ef55578ac, type: 3}
   otherActivated: {fileID: 21300000, guid: 60a388513be398642ba7554f6169f9be, type: 3}
+  checkpointSFX: {fileID: 8300000, guid: 97e1c477f32ab46a4ae7861de868ea75, type: 3}
   isActivated: 0
 --- !u!1 &2098545660
 GameObject:

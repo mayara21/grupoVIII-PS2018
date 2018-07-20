@@ -9,6 +9,8 @@ public class Checkpoint : MonoBehaviour {
     [SerializeField] Sprite thisActivated;
     [SerializeField] Sprite otherActivated;
 
+    [SerializeField] AudioClip checkpointSFX;
+
     SpriteRenderer spriteRend;
     SpriteRenderer otherSpriteRend;
 
@@ -26,6 +28,8 @@ public class Checkpoint : MonoBehaviour {
         if(!isActivated && collision.gameObject.CompareTag("My Player")) {
             isActivated = true;
             otherCheckPoint.isActivated = true;
+
+            AudioSource.PlayClipAtPoint(checkpointSFX, Camera.main.transform.position);
 
             FindObjectOfType<GameSession>().SaveGameState();
 

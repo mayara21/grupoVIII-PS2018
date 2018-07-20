@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class ExitLevel : MonoBehaviour {
 
     [SerializeField] float levelLoadDelay = 1f;
-    [SerializeField] int firstLevelIndex = 2;
-    [SerializeField] int secondLevelIndex = 3;
+    [SerializeField] int secondRoomIndex = 4;
+    //[SerializeField] int secondLevelIndex = 3;
 
     [SerializeField] TextAsset text;
     [SerializeField] TextBoxManager textBox;
@@ -23,7 +23,7 @@ public class ExitLevel : MonoBehaviour {
         var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
         if(!isLoadingScene && collision.gameObject.CompareTag("My Player") && canPassLevel(currentSceneIndex)) {
-            print("Oi");
+            //print("Oi");
             isLoadingScene = true;
             StartCoroutine(LoadNextScene(collision, currentSceneIndex));
         }
@@ -45,13 +45,13 @@ public class ExitLevel : MonoBehaviour {
     }
 
     private bool canPassLevel(int currentSceneIndex) {
-        if(currentSceneIndex == firstLevelIndex) {
-            if (!FindObjectOfType<GameSession>().gotFlipFlop) return false;
-        }
-
-        if(currentSceneIndex == secondLevelIndex) {
+        if(currentSceneIndex == secondRoomIndex) {
             if (!FindObjectOfType<GameSession>().gotTape) return false;
         }
+
+        /*if(currentSceneIndex == secondLevelIndex) {
+            if (!FindObjectOfType<GameSession>().gotTape) return false;
+        }*/
 
         return true;
     }

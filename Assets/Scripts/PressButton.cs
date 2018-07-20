@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PressButton : MonoBehaviour {
 
-    [SerializeField] MovingPlatform platform;
+    [SerializeField] MovingPlatform[] platforms;
     [SerializeField] float platformSpeed = 1f;
+
     //[SerializeField] Sprite disabledButton;
 
     Collider2D buttonCollider;
@@ -24,7 +25,11 @@ public class PressButton : MonoBehaviour {
 
         if(Input.GetKeyDown(KeyCode.UpArrow)) {
             //print("Entrei");
-            platform.GetComponent<MovingPlatform>().speed = platformSpeed;
+            for (int i = 0; i < platforms.Length; i++) {
+                if (i % 2 == 0) platforms[i].GetComponent<MovingPlatform>().speed = platformSpeed;
+                if (i % 2 != 0) platforms[i].GetComponent<MovingPlatform>().speed = -platformSpeed;
+            }
+            //platform.GetComponent<MovingPlatform>().speed = platformSpeed;
             buttonCollider.enabled = false;
             //spriteRend.sprite = disabledButton;
         }

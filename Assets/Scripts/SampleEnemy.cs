@@ -118,7 +118,7 @@ public class SampleEnemy : MonoBehaviour {
 	private IEnumerator SuckEnergy(float takenDamage) {
         print("levando dano");
         lives -= takenDamage;
-        FindObjectOfType<GameSession>().ProcessScoreIncrease(damageValue);
+        FindObjectOfType<GameSession>().ProcessScoreIncrease(damageValue, null);
         canTakeDamage = false;
       
         yield return new WaitForSeconds(postDamageImmuneTime);

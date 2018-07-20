@@ -21,6 +21,11 @@ public class Player : MonoBehaviour {
     [SerializeField] GameObject energyBallPrefab;
     [SerializeField] Transform energyBallSpawn;
     [SerializeField] GameObject suctionArea;
+
+    [SerializeField] AudioClip tookDamageSFX;
+    [SerializeField] AudioClip plugSFX;
+    [SerializeField] AudioClip shootingSFX;
+    [SerializeField] AudioClip jumpSFX;
     //[SerializeField] Collider2D feetCollider;
 
     [SerializeField] Cinemachine.CinemachineVirtualCamera cameraDown;
@@ -29,6 +34,7 @@ public class Player : MonoBehaviour {
     bool isAlive = true;
     bool canTakeDamage = true;
     bool isSucking = false;
+    //bool isPlayingSound = false;
 
     public static int maxAmountOfShots;
     public static int maxLives;
@@ -87,7 +93,7 @@ public class Player : MonoBehaviour {
             playerCollider2D.isTrigger = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Z) && amountOfShots > 0)
+        if (Input.GetKeyDown(KeyCode.Z) && FindObjectOfType<GameSession>().amountOfShots > 0)
         {
             Fire();
         }
@@ -119,10 +125,24 @@ public class Player : MonoBehaviour {
         }
     }
 
+	private void OnTriggerStay2D(Collider2D collision)
+	{
+        //print(collision.gameObject.name);
+        if(collision.gameObject.CompareTag("Dark Mask")) {
+            canMove = false;
+        }
+	}
+
 
 	private void OnTriggerExit2D(Collider2D collision) {
+        print(collision.gameObject.name);
+
         if (collision.gameObject.CompareTag("Suspended Platform") && !collision.IsTouching(playerCollider2D)) {
             playerCollider2D.isTrigger = false;
+        }
+
+        if(collision.gameObject.CompareTag("Dark Mask")) {
+            canMove = true;
         }
  	}
 
@@ -131,6 +151,7 @@ public class Player : MonoBehaviour {
     {
         lives -= temporaryDamage;
         FindObjectOfType<GameSession>().ProcessPlayerDamage(temporaryDamage); // Checar melhor isso
+        AudioSource.PlayClipAtPoint(tookDamageSFX, Camera.main.transform.position);
         if(lives <= 0) {
             Die();
         }
@@ -156,6 +177,7 @@ public class Player : MonoBehaviour {
         if (!playerCollider2D.IsTouchingLayers(LayerMask.GetMask("Plug"))) return;
 
         if(Input.GetKeyDown(KeyCode.UpArrow)) {
+            AudioSource.PlayClipAtPoint(plugSFX, Camera.main.transform.position);
             SwitchDimension();
         }
     }
@@ -191,7 +213,8 @@ public class Player : MonoBehaviour {
     private void Fire() {
         var energyBall = (GameObject)Instantiate(energyBallPrefab, energyBallSpawn.position, energyBallSpawn.rotation);
         energyBall.GetComponent<Rigidbody2D>().velocity = new Vector2(transform.localScale.x * energyBallSpeed, 0f);
-        amountOfShots--;
+        AudioSource.PlayClipAtPoint(shootingSFX, Camera.main.transform.position);
+        //amountOfShots--;
         FindObjectOfType<GameSession>().ProcessUseShot();
         Destroy(energyBall, 3.0f);
     }
@@ -229,6 +252,7 @@ public class Player : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space)) {
             Vector2 jumpSpeedToAdd = new Vector2(0f, jumpSpeed);
             rigidBody.velocity += jumpSpeedToAdd;
+            AudioSource.PlayClipAtPoint(jumpSFX, Camera.main.transform.position);
         }
     }
 
@@ -249,6 +273,7 @@ public class Player : MonoBehaviour {
         transform.position = new Vector3(transform.position.x, -transform.position.y, transform.position.z);
         rigidBody.gravityScale *= -1;
         jumpSpeed *= -1;
+        rigidBody.velocity = new Vector2(0f, rigidBody.velocity.y);
 
         FlipSpriteY();
     }
@@ -277,12 +302,12 @@ public class Player : MonoBehaviour {
         }
 
         if(collision.gameObject.CompareTag("Batteries")) {
-            if (amountOfShots < maxAmountOfShots) {
-                amountOfShots++;
+            if (FindObjectOfType<GameSession>().amountOfShots < maxAmountOfShots) {
+                //amountOfShots++;
                 FindObjectOfType<GameSession>().ProcessGetMoreShots();
             }
             else {
-                FindObjectOfType<GameSession>().ProcessScoreIncrease(batteryScore);
+                FindObjectOfType<GameSession>().ProcessScoreIncrease(batteryScore, collision);
             }
             Destroy(collision.gameObject);
         }

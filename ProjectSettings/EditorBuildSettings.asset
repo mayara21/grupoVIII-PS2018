@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Room 3.unity
     guid: df4a49d5334c2cf44a22e9140893daa2
+  - enabled: 1
+    path: Assets/Scenes/Final Cutscene.unity
+    guid: 0054eb62b15704e0ba3983baa5f8061d
   - enabled: 0
     path: Assets/Scenes/Sample Final Scene.unity
     guid: a0ff2f60d3a0f418b97102dbfb342447

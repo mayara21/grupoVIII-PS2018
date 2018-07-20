@@ -135,7 +135,6 @@ public class SampleEnemy : MonoBehaviour {
 	}*/
     
 
-
 	private IEnumerator PostAttackDelay() {
         canMove = false;
         yield return new WaitForSeconds(postAttackDelay);

@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class MachineController : MonoBehaviour {
 
+    [SerializeField] AudioClip machineActivating;
     [SerializeField] GameObject whiteMask;
     [SerializeField] Cinemachine.CinemachineVirtualCamera vcam;
+    [SerializeField] PowerBox powerBox;
+
+    [SerializeField] TextAsset text;
+    [SerializeField] TextBoxManager textBox;
+
+    [SerializeField] int startLine;
+    [SerializeField] int endLine;
 
     Collider2D machineCollider;
 
@@ -21,10 +29,44 @@ public class MachineController : MonoBehaviour {
 	}
 
     private void isBeingActivated() {
+        
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            print("Entrei");
-            FindObjectOfType<GameSession>().ProcessSuccessGame(whiteMask, vcam);
+            if(!FindObjectOfType<GameSession>().gotFlipFlop) {
+                startLine = 20;
+                endLine = 20;
+                RestartTextBox();
+            }
+
+            if(!powerBox.isActivated) {
+                startLine = 21;
+                endLine = 21;
+                RestartTextBox();
+            }
+
+            if(powerBox.isActivated && FindObjectOfType<GameSession>().gotFlipFlop) {
+                AudioSource.PlayClipAtPoint(machineActivating, Camera.main.transform.position);
+                ActivateMachine();
+            }
+        }
+    }
+
+    private void ActivateMachine() {
+        FindObjectOfType<GameSession>().ProcessSuccessGame(whiteMask, vcam);
+    }
+
+
+    private void RestartTextBox() {
+        textBox.ReloadScript(text);
+        textBox.currentLine = startLine;
+        textBox.endLine = endLine;
+        textBox.EnableTextBox();
+    }
+
+    private void OnTriggerExit2D(Collider2D collision) {
+        if (collision.gameObject.CompareTag("My Player"))
+        {
+            textBox.DisableTextBox();
         }
     }
 

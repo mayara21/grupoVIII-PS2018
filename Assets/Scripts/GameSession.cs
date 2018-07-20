@@ -122,6 +122,7 @@ public class GameSession : MonoBehaviour {
         player.canMove = false;
         StartCoroutine(ActivateMask(whiteMask));
         StartCoroutine(WaitForEffect(whiteMask, vcam));
+        StartCoroutine(FinalCutscene());
     }
 
     private IEnumerator ActivateMask(GameObject whiteMask) {
@@ -133,6 +134,12 @@ public class GameSession : MonoBehaviour {
         yield return new WaitForSeconds(3.3f);
         whiteMask.SetActive(false);
         vcam.gameObject.SetActive(true);
+    }
+
+    private IEnumerator FinalCutscene() {
+        yield return new WaitForSeconds(2f);
+        var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex + 1);
     }
 
     /*private void ResetGameSession() {

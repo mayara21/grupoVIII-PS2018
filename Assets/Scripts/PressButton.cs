@@ -25,9 +25,12 @@ public class PressButton : MonoBehaviour {
 
         if(Input.GetKeyDown(KeyCode.UpArrow)) {
             //print("Entrei");
-            for (int i = 0; i < platforms.Length; i++) {
-                if (i % 2 == 0) platforms[i].GetComponent<MovingPlatform>().speed = platformSpeed;
-                if (i % 2 != 0) platforms[i].GetComponent<MovingPlatform>().speed = -platformSpeed;
+            //for (int i = 0; i < platforms.Length; i++) {
+            //if (i % 2 == 0) platforms[i].GetComponent<MovingPlatform>().speed = platformSpeed;
+            //if (i % 2 != 0) platforms[i].GetComponent<MovingPlatform>().speed = -platformSpeed;
+            //}
+            foreach (MovingPlatform platform in platforms) {
+                platform.speed = platformSpeed;
             }
             //platform.GetComponent<MovingPlatform>().speed = platformSpeed;
             buttonCollider.enabled = false;

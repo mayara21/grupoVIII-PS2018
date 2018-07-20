@@ -31,20 +31,27 @@ public class MovingPlatform : MonoBehaviour
 
     private void Move() {
         if(isGoingUp && this.transform.position.y < maximalYPos) {
-            rigidBody.velocity = new Vector2(rigidBody.velocity.x, speed);
+            rigidBody.velocity = new Vector2(0f, speed);
         }
 
+        print(isGoingUp);
         if(transform.position.y >= maximalYPos) {
             isGoingUp = false;
         }
+        print(isGoingUp);
 
         if(!isGoingUp && this.transform.position.y > minimalYPos) {
-            rigidBody.velocity = new Vector2(rigidBody.velocity.x, -speed);
+            rigidBody.velocity = new Vector2(0f, -speed);
         }
 
+        print(isGoingUp);
+
+        print(transform.position.y);
+        print(minimalYPos);
         if(transform.position.y <= minimalYPos) {
             isGoingUp = true;
         }
+        print(isGoingUp);
     }
 
 }

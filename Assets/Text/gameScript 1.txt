@@ -17,3 +17,6 @@ E pegar alguns itens... essenciais
 
 
 A energia está fluindo agora.
+
+Ainda está faltando um item.
+Parece estar sem energia.

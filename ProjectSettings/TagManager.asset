@@ -18,6 +18,7 @@ TagManager:
   - Flip Flop
   - Checkpoint
   - Dark Mask
+  - Machine
   layers:
   - Default
   - TransparentFX
